@@ -2,7 +2,7 @@ package com.uanxon.sorm.utils;
 
 /**
  * 封装了字符串常用的操作
- * @author 
+ * @author uanxon 
  *
  */
 public class StringUtils {

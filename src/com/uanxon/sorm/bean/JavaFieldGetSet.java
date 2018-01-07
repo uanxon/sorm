@@ -2,7 +2,7 @@ package com.uanxon.sorm.bean;
 
 /**
  * 封装了java属性和get、set方法的源代码
- * @author 
+ * @author uanxon 
  *
  */
 public class JavaFieldGetSet {

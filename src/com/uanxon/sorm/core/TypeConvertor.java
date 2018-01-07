@@ -2,7 +2,7 @@ package com.uanxon.sorm.core;
 
 /**
  * 负责java数据类型和数据库数据类型的互相转换
- * @author 
+ * @author uanxon 
  *
  */
 public interface TypeConvertor {

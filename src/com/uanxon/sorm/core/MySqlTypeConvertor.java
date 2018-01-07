@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * mysql数据类型和java数据类型的转换
- * @author 
+ * @author uanxon 
  *
  */
 public class MySqlTypeConvertor implements TypeConvertor {

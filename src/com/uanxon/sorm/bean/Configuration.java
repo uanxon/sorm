@@ -2,7 +2,7 @@ package com.uanxon.sorm.bean;
 
 /**
  * 管理配置信息
- * @author 
+ * @author uanxon 
  *
  */
 public class Configuration {

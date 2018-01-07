@@ -19,7 +19,7 @@ import com.uanxon.sorm.core.TypeConvertor;
 
 /**
  * 封装了生成Java文件(源代码)常用的操作
- * @author 
+ * @author uanxon 
  *
  */
 public class JavaFileUtils {

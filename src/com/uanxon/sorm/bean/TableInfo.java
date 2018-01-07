@@ -8,7 +8,7 @@ import com.uanxon.sorm.core.TypeConvertor;
 
 /**
  * 存储表结构的信息
- * @author  
+ * @author uanxon  
  *
  */
 public class TableInfo {
