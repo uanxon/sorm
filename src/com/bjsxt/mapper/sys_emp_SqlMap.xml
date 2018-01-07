@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjsxt.dao.UanEmpDAO">
+	<resultMap id="baseResult" type="com.bjsxt.po.UanEmp">
+		<result column="birthday" property="birthday" jdbcType="DATETIME" />
+		<result column="deptName" property="deptName" jdbcType="VARCHAR" />
+		<result column="bonus" property="bonus" jdbcType="DOUBLE" />
+		<result column="empName" property="empName" jdbcType="VARCHAR" />
+		<result column="to_From" property="toFrom" jdbcType="VARCHAR" />
+		<result column="deptId" property="deptId" jdbcType="INT" />
+		<result column="id" property="id" jdbcType="INT" />
+		<result column="salary" property="salary" jdbcType="DOUBLE" />
+		<result column="deptAddr" property="deptAddr" jdbcType="VARCHAR" />
+		<result column="age" property="age" jdbcType="INT" />
+	</resultMap>
+ <select id="selectByPrimaryKey" resultMap="baseResult" parameterType="com.bjsxt.po.UanEmp">
+	 select birthday,deptName,bonus,empName,toFrom,deptId,id,salary,deptAddr,age
+	 from sys_emp
+		where id  = #{id:INT}
+ </select>
+ <insert id="insertUanEmp" useGeneratedKeys="true" keyProperty="${1}" parameterType="com.bjsxt.po.UanEmp">
+	 insert into sys_emp (birthday,deptName,bonus,empName,toFrom,deptId,id,salary,deptAddr,age)
+	 values ( #{birthday:DATETIME},#{deptName:VARCHAR},#{bonus:DOUBLE},#{empName:VARCHAR},#{toFrom:VARCHAR},#{deptId:INT},#{id:INT},#{salary:DOUBLE},#{deptAddr:VARCHAR},#{age:INT})
+ </insert>
+ <update id="updateByPrimaryKey" parameterType="com.bjsxt.po.UanEmp" >
+	 update sys_emp
+	 <set>
+		<if test=" birthday != null"> birthday  = #{birthday:DATETIME},</if>
+		<if test=" deptName != null"> deptName  = #{deptName:VARCHAR},</if>
+		<if test=" bonus != null"> bonus  = #{bonus:DOUBLE},</if>
+		<if test=" empName != null"> empName  = #{empName:VARCHAR},</if>
+		<if test=" toFrom != null"> toFrom  = #{toFrom:VARCHAR},</if>
+		<if test=" deptId != null"> deptId  = #{deptId:INT},</if>
+		<if test=" id != null"> id  = #{id:INT},</if>
+		<if test=" salary != null"> salary  = #{salary:DOUBLE},</if>
+		<if test=" deptAddr != null"> deptAddr  = #{deptAddr:VARCHAR},</if>
+		<if test=" age != null"> age  = #{age:INT},</if>
+	 </set>
+		where id  = #{id:INT}
+ </update>
+</mapper>
