@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.uanxon.dao.BrwChannelDepositDAO">
+	<resultMap id="baseResult" type="com.uanxon.model.BrwChannelDeposit">
+		<result column="amount" property="amount" jdbcType="DECIMAL" />
+		<result column="settleTime" property="settleTime" jdbcType="DATETIME" />
+		<result column="optUser" property="optUser" jdbcType="INT" />
+		<result column="addTime" property="addTime" jdbcType="DATETIME" />
+		<result column="lid" property="lid" jdbcType="INT" />
+		<result column="receiveRemark" property="receiveRemark" jdbcType="VARCHAR" />
+		<result column="id" property="id" jdbcType="INT" />
+		<result column="settleRemark" property="settleRemark" jdbcType="VARCHAR" />
+		<result column="cid" property="cid" jdbcType="INT" />
+	</resultMap>
+ <select id="selectByPrimaryKey" resultMap="baseResult" parameterType="com.uanxon.model.BrwChannelDeposit">
+	 select amount,settleTime,optUser,addTime,lid,receiveRemark,id,settleRemark,cid
+	 from t_b_channel_deposit
+		where id  = #{id:INT}
+ </select>
+ <insert id="insertBrwChannelDeposit" useGeneratedKeys="true" keyProperty="${1}" parameterType="com.uanxon.model.BrwChannelDeposit">
+	 insert into t_b_channel_deposit (amount,settleTime,optUser,addTime,lid,receiveRemark,id,settleRemark,cid)
+	 values ( #{amount:DECIMAL},#{settleTime:DATETIME},#{optUser:INT},#{addTime:DATETIME},#{lid:INT},#{receiveRemark:VARCHAR},#{id:INT},#{settleRemark:VARCHAR},#{cid:INT})
+ </insert>
+ <update id="updateByPrimaryKey" parameterType="com.uanxon.model.BrwChannelDeposit" >
+	 update t_b_channel_deposit
+	 <set>
+		<if test=" amount != null"> amount  = #{amount:DECIMAL},</if>
+		<if test=" settleTime != null"> settleTime  = #{settleTime:DATETIME},</if>
+		<if test=" optUser != null"> optUser  = #{optUser:INT},</if>
+		<if test=" addTime != null"> addTime  = #{addTime:DATETIME},</if>
+		<if test=" lid != null"> lid  = #{lid:INT},</if>
+		<if test=" receiveRemark != null"> receiveRemark  = #{receiveRemark:VARCHAR},</if>
+		<if test=" id != null"> id  = #{id:INT},</if>
+		<if test=" settleRemark != null"> settleRemark  = #{settleRemark:VARCHAR},</if>
+		<if test=" cid != null"> cid  = #{cid:INT},</if>
+	 </set>
+		where id  = #{id:INT}
+ </update>
+</mapper>

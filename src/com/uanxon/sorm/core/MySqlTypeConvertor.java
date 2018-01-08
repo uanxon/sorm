@@ -26,6 +26,7 @@ public class MySqlTypeConvertor implements TypeConvertor {
 		mapType.put("blob", "java.sql.BLob");
 		mapType.put("date", "java.sql.Date");
 		mapType.put("time", "java.sql.Time");
+		mapType.put("decimal", "java.math.BigDecimal");
 		mapType.put("timestamp", "java.util.Date");
 		mapType.put("datetime", "java.util.Date");
 	}
