@@ -45,42 +45,54 @@ public class TableContext {
 	
 	private static void initModel() {
 		try {
-			//初始化获得表的信息
-			Connection con = DBManager.getConn();
-			DatabaseMetaData dbmd = con.getMetaData(); 
+			String[] tableNames = DBManager.getConf().getTables();
 			
-			ResultSet tableRet = dbmd.getTables(null, "%","%",new String[]{"TABLE"}); 
-			
-			while(tableRet.next()){
-				String tableName = (String) tableRet.getObject("TABLE_NAME");
-				TableInfo ti = new TableInfo(tableName, new ArrayList<ColumnInfo>()
-						,new HashMap<String, ColumnInfo>());
-				tables.put(tableName, ti);
+			if (tableNames.length>0) {
 				
-				ResultSet set = dbmd.getColumns(null, "%", tableName, "%");  //查询表中的所有字段
-				while(set.next()){
-					ColumnInfo ci = new ColumnInfo(set.getString("COLUMN_NAME"), 
-							set.getString("TYPE_NAME"),set.getString("REMARKS") ,0);
-					ti.getColumns().put(set.getString("COLUMN_NAME"), ci);
-				}
+				//初始化获得表的信息
+				Connection con = DBManager.getConn();
+				DatabaseMetaData dbmd = con.getMetaData(); 
 				
-				ResultSet set2 = dbmd.getPrimaryKeys(null, "%", tableName);  //查询t_user表中的主键
-				while(set2.next()){
-					ColumnInfo ci2 = (ColumnInfo) ti.getColumns().get(set2.getObject("COLUMN_NAME"));
-					ci2.setKeyType(1);  //设置为主键类型
-					ti.getPriKeys().add(ci2);
-				}
+				ResultSet tableRet = dbmd.getTables(null, "%","%",new String[]{"TABLE"}); 
 				
-				if(ti.getPriKeys().size()>0){  //取唯一主键。。方便使用。如果是联合主键。则为空！
-					ti.setOnlyPriKey(ti.getPriKeys().get(0));
+				while(tableRet.next()){
+					String tableName ;
+					for (String tnames : tableNames) {
+						tableName = (String) tableRet.getObject("TABLE_NAME");
+						if (tnames != null && tnames.equals(tableName)) {
+							TableInfo ti = new TableInfo(tableName, new ArrayList<ColumnInfo>()
+									,new HashMap<String, ColumnInfo>());
+							tables.put(tableName, ti);
+							
+							ResultSet set = dbmd.getColumns(null, "%", tableName, "%");  //查询表中的所有字段
+							while(set.next()){
+								ColumnInfo ci = new ColumnInfo(set.getString("COLUMN_NAME"), 
+										set.getString("TYPE_NAME"),set.getString("REMARKS") ,0);
+								ti.getColumns().put(set.getString("COLUMN_NAME"), ci);
+							}
+							
+							ResultSet set2 = dbmd.getPrimaryKeys(null, "%", tableName);  //查询t_user表中的主键
+							while(set2.next()){
+								ColumnInfo ci2 = (ColumnInfo) ti.getColumns().get(set2.getObject("COLUMN_NAME"));
+								ci2.setKeyType(1);  //设置为主键类型
+								ti.getPriKeys().add(ci2);
+							}
+							
+							if(ti.getPriKeys().size()>0){  //取唯一主键。。方便使用。如果是联合主键。则为空！
+								ti.setOnlyPriKey(ti.getPriKeys().get(0));
+							}
+						}
+					}
+					
+					
 				}
+				//更新类结构
+				updateJavaPOFile();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		//更新类结构
-		updateJavaPOFile();
 	}
 	
 	/**

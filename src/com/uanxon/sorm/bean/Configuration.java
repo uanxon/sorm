@@ -31,6 +31,10 @@ public class Configuration {
 	 */
 	private String srcPath;
 	/**
+	 * 表
+	 */
+	private String tables[];
+	/**
 	 * 扫描生成java类的包(po的意思是：Persistence object持久化对象)
 	 */
 	private String poPackage;
@@ -162,6 +166,17 @@ public class Configuration {
 
 	public void setIncrPrefix(String incrPrefix) {
 		this.incrPrefix = incrPrefix;
+	}
+
+
+
+
+	public String[] getTables() {
+		return tables;
+	}
+
+	public void setTables(String[] tables) {
+		this.tables = tables;
 	}
 
 

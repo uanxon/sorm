@@ -39,6 +39,9 @@ public class DBManager {
 		conf.setMapperPackage (pros.getProperty("mapperPackage"));
 		conf.setRemovePrefix (pros.getProperty("removePrefix"));
 		conf.setIncrPrefix (pros.getProperty("incrPrefix"));
+		conf.setIncrPrefix (pros.getProperty("incrPrefix"));
+		String tables = pros.getProperty("incrPrefix");
+		conf.setTables((tables!=null ? tables:"").split(","));
 
 	}
 	
