@@ -1,4 +1,4 @@
-package com.uanxon.sorm;
+package com.uanxon;
 
 import com.uanxon.sorm.core.TableContext;
 
