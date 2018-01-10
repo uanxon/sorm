@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.uanxon.dao.BrwMessageLogDAO">
+	<resultMap id="baseResult" type="com.uanxon.model.BrwMessageLog">
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="msgid" property="msgid" jdbcType="INT" />
+		<result column="bid" property="bid" jdbcType="INT" />
+		<result column="message" property="message" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="INT" />
+		<result column="sendtime" property="sendtime" jdbcType="DATETIME" />
+		<result column="results" property="results" jdbcType="INT" />
+	</resultMap>
+ <select id="selectByPrimaryKey" resultMap="baseResult" parameterType="com.uanxon.model.BrwMessageLog">
+	 select phone,msgid,bid,message,type,sendtime,results
+	 from t_b_message_log
+		where msgid  = #{msgid:INT}
+ </select>
+ <insert id="insertBrwMessageLog" useGeneratedKeys="true" keyProperty="${1}" parameterType="com.uanxon.model.BrwMessageLog">
+	 insert into t_b_message_log (phone,msgid,bid,message,type,sendtime,results)
+	 values ( #{phone:VARCHAR},#{msgid:INT},#{bid:INT},#{message:VARCHAR},#{type:INT},#{sendtime:DATETIME},#{results:INT})
+ </insert>
+ <update id="updateByPrimaryKey" parameterType="com.uanxon.model.BrwMessageLog" >
+	 update t_b_message_log
+	 <set>
+		<if test=" phone != null"> phone  = #{phone:VARCHAR},</if>
+		<if test=" msgid != null"> msgid  = #{msgid:INT},</if>
+		<if test=" bid != null"> bid  = #{bid:INT},</if>
+		<if test=" message != null"> message  = #{message:VARCHAR},</if>
+		<if test=" type != null"> type  = #{type:INT},</if>
+		<if test=" sendtime != null"> sendtime  = #{sendtime:DATETIME},</if>
+		<if test=" results != null"> results  = #{results:INT},</if>
+	 </set>
+		where msgid  = #{msgid:INT}
+ </update>
+</mapper>
