@@ -15,8 +15,10 @@ public class MySqlTypeConvertor implements TypeConvertor {
 	static {
 		mapType.put("varchar", "String");
 		mapType.put("char", "String");
+		mapType.put("text", "String");
 		mapType.put("int", "Integer");
 		mapType.put("tinyint", "Integer");
+		mapType.put("bit", "Integer");
 		mapType.put("smallint", "Integer");
 		mapType.put("integer", "Integer");
 		mapType.put("bigint", "Integer");
