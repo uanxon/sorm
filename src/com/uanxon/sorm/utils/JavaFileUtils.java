@@ -250,6 +250,68 @@ public class JavaFileUtils {
 		return files;
 	}
 	
+	/**
+	 * 根据表信息生成java类的源代码
+	 * @param tableInfo 表信息
+	 * @param convertor 数据类型转化器 
+	 * @return java类的源代码
+	 */
+	public static String[] createBeanFiles(TableInfo tableInfo,TypeConvertor convertor,String className){
+		String[] files = new String[3];
+		Map<String,ColumnInfo> columns = tableInfo.getColumns();
+		List<JavaFieldGetSet> javaFields = new ArrayList<JavaFieldGetSet>();
+		
+		StringBuilder src = new StringBuilder();
+	
+	
+		StringBuilder importStr =  new StringBuilder(); 
+	
+		//================
+		String poPackage = DBManager.getConf().getPoPackage();
+		//===========
+		
+		//生成package语句
+		src.append("package "+poPackage+";\n\n");
+		
+		//生成import语句 和 类信息		
+		String fieldName=null,fieldType=null,fieldRemarks=null;
+		
+		for(ColumnInfo c:columns.values()){
+			fieldName=StringUtils.firstChar2UpperCase(c.getName());
+			fieldType=convertor.databaseType2JavaType(c.getDataType());
+			fieldRemarks=c.getRemarks();
+			if (fieldType != null &&  fieldType.indexOf(".")>0) {
+				// 生成 import ...;
+				importStr.append("import "+fieldType+";\n");
+				fieldType = fieldType.substring(fieldType.lastIndexOf(".")+1,fieldType.length());
+			}
+			javaFields.add(createFields(fieldName,fieldType,fieldRemarks));
+		}
+		src.append(importStr).append("\n");
+		
+		//生成类声明语句
+		src.append("public class "+className+" {\n\n");
+		
+		//生成属性列表
+		for(JavaFieldGetSet f:javaFields){
+			src.append(f.getFieldInfo());
+		}
+		src.append("\n\n");
+		//生成get方法列表
+		for(JavaFieldGetSet f:javaFields){
+			src.append(f.getGetInfo());
+		}
+		//生成set方法列表
+		for(JavaFieldGetSet f:javaFields){
+			src.append(f.getSetInfo());
+		}
+		
+		//生成类结束
+		src.append("}\n");
+		files[0]=src.toString();
+		return files;
+	}
+	
 	
 	
 	public static void createJavaPOFile(TableInfo tableInfo,TypeConvertor convertor){

@@ -65,7 +65,7 @@ public class TableContext {
 							tables.put(tableName, ti);
 							
 							ResultSet set = dbmd.getColumns(null, "%", tableName, "%");  //查询表中的所有字段
-							while(set.next()){
+							while(set.next()){								
 								ColumnInfo ci = new ColumnInfo(set.getString("COLUMN_NAME"), 
 										set.getString("TYPE_NAME"),set.getString("REMARKS") ,0);
 								ti.getColumns().put(set.getString("COLUMN_NAME"), ci);
@@ -102,8 +102,8 @@ public class TableContext {
 	public static void updateJavaPOFile(){
 		Map<String,TableInfo> map = TableContext.tables;
 		for(TableInfo t:map.values()){
-//			JavaFileUtils.createJavaPOFile(t,new MySqlTypeConvertor());
-			JavaFileUtils.createJavaFiles(t,new MySqlTypeConvertor());
+			JavaFileUtils.createJavaPOFile(t,new MySqlTypeConvertor());
+//			JavaFileUtils.createJavaFiles(t,new MySqlTypeConvertor());
 		}	
 	}
 	
