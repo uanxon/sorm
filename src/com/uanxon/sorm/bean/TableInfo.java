@@ -38,8 +38,6 @@ public class TableInfo {
 	//import 
 	private Map<String,String> imports;
 	
-	//dao包的地址
-	private String daoSrc;
 	//bean包的地址
 	private String beanSrc;
 	//字段的list string
@@ -148,13 +146,6 @@ public class TableInfo {
 		this.daoFile = daoFile;
 	}
 
-	public String getDaoSrc() {
-		return daoSrc;
-	}
-
-	public void setDaoSrc(String daoSrc) {
-		this.daoSrc = daoSrc;
-	}
 
 	public String getBeanSrc() {
 		return beanSrc;

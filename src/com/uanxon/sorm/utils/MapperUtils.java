@@ -9,7 +9,7 @@ public class MapperUtils {
 	 * @param daoSrc
 	 */
 	public static StringBuffer createMapper(TableInfo ti) {
-		StringBuffer s = new StringBuffer("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<!DOCTYPE mapper PUBLIC \"-//mybatis.org//DTD Mapper 3.0//EN\"\r\n\"http://mybatis.org/dtd/mybatis-3-mapper.dtd\">\r\n<mapper namespace=\""+ti.getDaoSrc()+"\">\r\n")
+		StringBuffer s = new StringBuffer("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<!DOCTYPE mapper PUBLIC \"-//mybatis.org//DTD Mapper 3.0//EN\"\r\n\"http://mybatis.org/dtd/mybatis-3-mapper.dtd\">\r\n<mapper namespace=\""+ti.getDao().getDaoPage()+"."+ti.getDao().getDaoName()+"\">\r\n")
 				.append(createResultMap(ti))
 				.append(createDelete(ti))
 				.append(createInsert(ti))
@@ -27,7 +27,7 @@ public class MapperUtils {
 	 * @return
 	 */
 	public static StringBuffer createResultMap(TableInfo ti) {
-		StringBuffer s = new StringBuffer("  <resultMap id=\"BaseResultMap\" type=\""+ti.getBeanSrc()+"\">\r\n"); 
+		StringBuffer s = new StringBuffer("  <resultMap id=\"BaseResultMap\" type=\""+ti.getDao().getBeanSrc()+"\">\r\n"); 
 				for (String culname : ti.getSorts()) {
 					s.append("\t<result column=\"").append(culname).append("\" property=\"")
 					.append(ti.getColumns().get(culname).getFieldName()).append("\" />\r\n");
@@ -66,7 +66,7 @@ public class MapperUtils {
 	 */
 	public static StringBuffer createInsert(TableInfo ti) {
 		StringBuffer s = new StringBuffer(" <insert id=\"insert\" parameterType=\"")
-				.append(ti.getBeanSrc())
+				.append(ti.getDao().getBeanSrc())
 				.append("\">\r\n    insert into ").append(ti.getTname())
 				.append(" (").append(ti.getColStrs().substring(ti.getColStrs().indexOf(",")+1))
 				.append(")\r\n" )
@@ -88,7 +88,7 @@ public class MapperUtils {
 	 */
 	public static StringBuffer createnInsertSelective(TableInfo ti) {
 		StringBuffer s = new StringBuffer(" <insert id=\"insertSelective\" parameterType=\"")
-				.append(ti.getBeanSrc())
+				.append(ti.getDao().getBeanSrc())
 				.append("\">\r\n    insert into ").append(ti.getTname())
 				.append("\r\n    <trim prefix=\"(\" suffix=\")\" suffixOverrides=\",\">\r\n" );
 		StringBuffer x = new StringBuffer();
@@ -129,7 +129,7 @@ public class MapperUtils {
 	 */
 	public static StringBuffer createUpdateSelective(TableInfo ti) {
 		StringBuffer s = new StringBuffer("  <update id=\"updateByPrimaryKeySelective\" parameterType=\"")
-				.append(ti.getBeanSrc()).append("\">\r\n    update ").append(ti.getTname())
+				.append(ti.getDao().getBeanSrc()).append("\">\r\n    update ").append(ti.getTname())
 				.append("\r\n    <set>    \r\n");
 				for(int i=1;i<ti.getSorts().size();i++) {
 					s.append("      <if test=\"").append(ti.getColumns().get(ti.getSorts().get(i)).getFieldName());
@@ -158,7 +158,7 @@ public class MapperUtils {
 	 */
 	public static StringBuffer createUpdate(TableInfo ti) {
 		StringBuffer s = new StringBuffer("  <update id=\"updateByPrimaryKeySelective\" parameterType=\"")
-				.append(ti.getBeanSrc()).append("\">\r\n    update ").append(ti.getTname())
+				.append(ti.getDao().getBeanSrc()).append("\">\r\n    update ").append(ti.getTname())
 				.append("\r\n    <set>    \r\n");
 				for(int i=1;i<ti.getSorts().size();i++) {					
 					s.append("        ")
