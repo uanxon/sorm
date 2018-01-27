@@ -1,4 +1,4 @@
-package com.uanxon.sorm1.bean;
+package com.uanxon.sorm.bean;
 
 public class JavaDao {
 	
@@ -40,6 +40,7 @@ public class JavaDao {
 	}
 	public void setBeanName(String beanName) {
 		this.beanName = beanName;
+		this.daoName = this.beanName +"DAO";
 	}
 	public StringBuffer getDaoSrc() {
 		return daoSrc;

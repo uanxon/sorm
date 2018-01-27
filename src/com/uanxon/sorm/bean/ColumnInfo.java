@@ -10,6 +10,10 @@ public class ColumnInfo {
 	 * 字段名称
 	 */
 	private String name;
+	/**
+	 * 字段名称
+	 */
+	private String fieldName;
 	
 	/**
 	 * 字段的数据类型
@@ -75,4 +79,13 @@ public class ColumnInfo {
 
 	public ColumnInfo() {
 	}
+
+	public String getFieldName() {
+		return fieldName;
+	}
+
+	public void setFieldName(String fieldName) {
+		this.fieldName = fieldName;
+	}
+	
 }

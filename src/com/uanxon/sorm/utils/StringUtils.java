@@ -8,7 +8,7 @@ package com.uanxon.sorm.utils;
 public class StringUtils {
 	
 	/**
-	 * 将目标字符串首字母变为大写
+	 * 驼峰写法
 	 * @param str 目标字符串
 	 * @return 首字母变为大写的字符串
 	 */
@@ -19,7 +19,7 @@ public class StringUtils {
 		String [] strs = str.split("_");
 		str = "";
 		for (int i=0;i<strs.length;i++) {
-			if (strs[i] !=null && strs[i] != null) {
+			if (strs[i] !=null && !"".equals(strs[i])) {
 				if (i==0) {
 					str += strs[i];
 				}else {
@@ -30,8 +30,17 @@ public class StringUtils {
 		
 		return str;
 	}
-	
-	
+	/**
+	 * 将驼峰写法的首字母大写
+	 * @param str
+	 * @return
+	 */
+	public static String firstCharUpperCase(String str) {
+		if (str != null && !"".equals(str)) {
+			str = str.substring(0, 1).toUpperCase()+str.substring(1);
+		}
+		return str;
+	}
 	
 	private static String removePrefix (String str , String removePrefix, String incrPrefix) {
 		

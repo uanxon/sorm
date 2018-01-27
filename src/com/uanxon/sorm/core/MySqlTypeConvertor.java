@@ -37,11 +37,12 @@ public class MySqlTypeConvertor implements TypeConvertor {
 	public String databaseType2JavaType(String columnType) {
 		String type = null;
 		if(columnType.contains(" ")) {
-			columnType = columnType.substring(columnType.indexOf(" "))+columnType.substring(columnType.lastIndexOf(" ")+1,columnType.length());
+			columnType = columnType.substring(0,columnType.indexOf(" "));
 		}
 		type =  mapType.get(columnType.toLowerCase());
 		if(type == null) {
-			System.out.println(columnType);
+			System.out.println(">>>>>>>>>>>>>>>>\n发现jdbc类型不存在:"+columnType);
+			type = mapType.get("int");
 		}
 		return type;
 	}
@@ -51,4 +52,8 @@ public class MySqlTypeConvertor implements TypeConvertor {
 		return null;
 	}
 
+	public static void main(String[] args) {
+		MySqlTypeConvertor c = new MySqlTypeConvertor();
+		System.out.println(	c.databaseType2JavaType("BIGINT UNSIGNED"));
+	}
 }

@@ -11,12 +11,12 @@
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="ip" jdbcType="VARCHAR" property="ip" />
   </resultMap>
-  <sql id="Base_Column_List">
+  <sql id="base_Sql">
     id, biid, optId, addTime, type, status, remark, ip
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
-    <include refid="Base_Column_List" />
+    <include refid="base_Sql" />
     from t_b_borrowing_opt_log
     where id = #{id,jdbcType=INTEGER}
   </select>

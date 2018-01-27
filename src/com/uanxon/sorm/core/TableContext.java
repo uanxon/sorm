@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.uanxon.sorm.bean.ColumnInfo;
+import com.uanxon.sorm.bean.JavaDao;
 import com.uanxon.sorm.bean.TableInfo;
 import com.uanxon.sorm.utils.JavaFileUtils;
 import com.uanxon.sorm.utils.StringUtils;
@@ -61,14 +62,17 @@ public class TableContext {
 						tableName = (String) tableRet.getObject("TABLE_NAME");
 						if (tnames != null && tnames.equals(tableName)) {
 							TableInfo ti = new TableInfo(tableName, new ArrayList<ColumnInfo>()
-									,new HashMap<String, ColumnInfo>());
+									,new HashMap<String, ColumnInfo>(),new ArrayList<String>());
 							tables.put(tableName, ti);
 							
 							ResultSet set = dbmd.getColumns(null, "%", tableName, "%");  //查询表中的所有字段
-							while(set.next()){								
-								ColumnInfo ci = new ColumnInfo(set.getString("COLUMN_NAME"), 
+							String colname = "";
+							while(set.next()){
+								colname = set.getString("COLUMN_NAME");
+								ColumnInfo ci = new ColumnInfo(colname, 
 										set.getString("TYPE_NAME"),set.getString("REMARKS") ,0);
-								ti.getColumns().put(set.getString("COLUMN_NAME"), ci);
+								ti.getColumns().put(colname, ci);
+								ti.getSorts().add(colname);
 							}
 							
 							ResultSet set2 = dbmd.getPrimaryKeys(null, "%", tableName);  //查询t_user表中的主键
@@ -101,9 +105,14 @@ public class TableContext {
 	 */
 	public static void updateJavaPOFile(){
 		Map<String,TableInfo> map = TableContext.tables;
+		TypeConvertor convertor = new MySqlTypeConvertor();
 		for(TableInfo t:map.values()){
-			JavaFileUtils.createJavaPOFile(t,new MySqlTypeConvertor());
-//			JavaFileUtils.createJavaFiles(t,new MySqlTypeConvertor());
+			t.setConvertor(convertor);
+			t.setDao(new JavaDao());
+			t.getDao().setBeanName(StringUtils.firstCharUpperCase(StringUtils.firstChar2UpperCase(t.getTname())));
+			t.getDao().setDaoPage(DBManager.getConf().getDaoPackage());
+			t.getDao().setBeanSrc(DBManager.getConf().getPoPackage()+"."+t.getDao().getBeanName());
+			JavaFileUtils.createJavaPOFile(t);
 		}	
 	}
 	
