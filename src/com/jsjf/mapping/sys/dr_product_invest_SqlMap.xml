@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jsjf.dao.sys.DrProductInvestDAO">
+  <resultMap id="BaseResultMap" type="com.jsjf.model.sys.DrProductInvest">
+	<result column="id" property="id" />
+	<result column="uid" property="uid" />
+	<result column="pid" property="pid" />
+	<result column="amount" property="amount" />
+	<result column="investTime" property="investTime" />
+	<result column="status" property="status" />
+	<result column="factAmount" property="factAmount" />
+	<result column="interest" property="interest" />
+	<result column="factInterest" property="factInterest" />
+	<result column="specialRate" property="specialRate" />
+	<result column="fid" property="fid" />
+	<result column="experience" property="experience" />
+	<result column="joinType" property="joinType" />
+	<result column="agreementNo" property="agreementNo" />
+	<result column="message" property="message" />
+	<result column="remitMchntTxnSsn" property="remitMchntTxnSsn" />
+	<result column="contract_no" property="contractNo" />
+	<result column="fuiouMessageNo" property="fuiouMessageNo" />
+	<result column="fileStatus" property="fileStatus" />
+	<result column="failureCause" property="failureCause" />
+	<result column="mchnt_txn_ssn" property="mchntTxnSsn" />
+	<result column="rewarsType" property="rewarsType" />
+	<result column="rewarsStatus" property="rewarsStatus" />
+	<result column="anxinContractNo" property="anxinContractNo" />
+  </resultMap>
+ <sql id="base_Sql">
+    id,uid,pid,amount,investTime,status,factAmount,interest,factInterest,specialRate,fid,experience,joinType,agreementNo,message,remitMchntTxnSsn,contract_no,fuiouMessageNo,fileStatus,failureCause,mchnt_txn_ssn,rewarsType,rewarsStatus,anxinContractNo
+ </sql>
+ <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dr_product_invest
+    where id = #{id}
+ </delete>
+ <insert id="insert" parameterType="com.jsjf.model.sys.DrProductInvest">
+    insert into dr_product_invest (uid,pid,amount,investTime,status,factAmount,interest,factInterest,specialRate,fid,experience,joinType,agreementNo,message,remitMchntTxnSsn,contract_no,fuiouMessageNo,fileStatus,failureCause,mchnt_txn_ssn,rewarsType,rewarsStatus,anxinContractNo)
+    values (#{uid},#{pid},#{amount},#{investTime},#{status},#{factAmount},#{interest},#{factInterest},#{specialRate},#{fid},#{experience},#{joinType},#{agreementNo},#{message},#{remitMchntTxnSsn},#{contractNo},#{fuiouMessageNo},#{fileStatus},#{failureCause},#{mchntTxnSsn},#{rewarsType},#{rewarsStatus},#{anxinContractNo})
+ </insert>
+ <insert id="insertSelective" parameterType="com.jsjf.model.sys.DrProductInvest">
+    insert into dr_product_invest
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        uid,
+      </if>    
+      <if test="pid != null">
+        pid,
+      </if>    
+      <if test="amount != null">
+        amount,
+      </if>    
+      <if test="investTime != null">
+        investTime,
+      </if>    
+      <if test="status != null">
+        status,
+      </if>    
+      <if test="factAmount != null">
+        factAmount,
+      </if>    
+      <if test="interest != null">
+        interest,
+      </if>    
+      <if test="factInterest != null">
+        factInterest,
+      </if>    
+      <if test="specialRate != null">
+        specialRate,
+      </if>    
+      <if test="fid != null">
+        fid,
+      </if>    
+      <if test="experience != null && experience != ''">
+        experience,
+      </if>    
+      <if test="joinType != null">
+        joinType,
+      </if>    
+      <if test="agreementNo != null && agreementNo != ''">
+        agreementNo,
+      </if>    
+      <if test="message != null && message != ''">
+        message,
+      </if>    
+      <if test="remitMchntTxnSsn != null && remitMchntTxnSsn != ''">
+        remitMchntTxnSsn,
+      </if>    
+      <if test="contractNo != null && contractNo != ''">
+        contract_no,
+      </if>    
+      <if test="fuiouMessageNo != null && fuiouMessageNo != ''">
+        fuiouMessageNo,
+      </if>    
+      <if test="fileStatus != null">
+        fileStatus,
+      </if>    
+      <if test="failureCause != null && failureCause != ''">
+        failureCause,
+      </if>    
+      <if test="mchntTxnSsn != null && mchntTxnSsn != ''">
+        mchnt_txn_ssn,
+      </if>    
+      <if test="rewarsType != null && rewarsType != ''">
+        rewarsType,
+      </if>    
+      <if test="rewarsStatus != null">
+        rewarsStatus,
+      </if>    
+      <if test="anxinContractNo != null && anxinContractNo != ''">
+        anxinContractNo,
+      </if>    
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">     
+      <if test="uid != null">
+          #{uid},
+      </if>    
+      <if test="pid != null">
+          #{pid},
+      </if>    
+      <if test="amount != null">
+          #{amount},
+      </if>    
+      <if test="investTime != null">
+          #{investTime},
+      </if>    
+      <if test="status != null">
+          #{status},
+      </if>    
+      <if test="factAmount != null">
+          #{factAmount},
+      </if>    
+      <if test="interest != null">
+          #{interest},
+      </if>    
+      <if test="factInterest != null">
+          #{factInterest},
+      </if>    
+      <if test="specialRate != null">
+          #{specialRate},
+      </if>    
+      <if test="fid != null">
+          #{fid},
+      </if>    
+      <if test="experience != null && experience != ''">
+          #{experience},
+      </if>    
+      <if test="joinType != null">
+          #{joinType},
+      </if>    
+      <if test="agreementNo != null && agreementNo != ''">
+          #{agreementNo},
+      </if>    
+      <if test="message != null && message != ''">
+          #{message},
+      </if>    
+      <if test="remitMchntTxnSsn != null && remitMchntTxnSsn != ''">
+          #{remitMchntTxnSsn},
+      </if>    
+      <if test="contractNo != null && contractNo != ''">
+          #{contract_no},
+      </if>    
+      <if test="fuiouMessageNo != null && fuiouMessageNo != ''">
+          #{fuiouMessageNo},
+      </if>    
+      <if test="fileStatus != null">
+          #{fileStatus},
+      </if>    
+      <if test="failureCause != null && failureCause != ''">
+          #{failureCause},
+      </if>    
+      <if test="mchntTxnSsn != null && mchntTxnSsn != ''">
+          #{mchnt_txn_ssn},
+      </if>    
+      <if test="rewarsType != null && rewarsType != ''">
+          #{rewarsType},
+      </if>    
+      <if test="rewarsStatus != null">
+          #{rewarsStatus},
+      </if>    
+      <if test="anxinContractNo != null && anxinContractNo != ''">
+          #{anxinContractNo},
+      </if>    
+    </trim>
+  </insert>
+ <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="base_Sql" />
+    from dr_product_invest
+    where id = #{id}
+ </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsjf.model.sys.DrProductInvest">
+    update dr_product_invest
+    <set>    
+        uid = #{uid},
+        pid = #{pid},
+        amount = #{amount},
+        investTime = #{investTime},
+        status = #{status},
+        factAmount = #{factAmount},
+        interest = #{interest},
+        factInterest = #{factInterest},
+        specialRate = #{specialRate},
+        fid = #{fid},
+        experience = #{experience},
+        joinType = #{joinType},
+        agreementNo = #{agreementNo},
+        message = #{message},
+        remitMchntTxnSsn = #{remitMchntTxnSsn},
+        contract_no = #{contractNo},
+        fuiouMessageNo = #{fuiouMessageNo},
+        fileStatus = #{fileStatus},
+        failureCause = #{failureCause},
+        mchnt_txn_ssn = #{mchntTxnSsn},
+        rewarsType = #{rewarsType},
+        rewarsStatus = #{rewarsStatus},
+        anxinContractNo = #{anxinContractNo},
+    </set>
+     where id = #{id}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsjf.model.sys.DrProductInvest">
+    update dr_product_invest
+    <set>    
+      <if test="uid != null">
+        uid = #{uid},
+      </if>
+      <if test="pid != null">
+        pid = #{pid},
+      </if>
+      <if test="amount != null">
+        amount = #{amount},
+      </if>
+      <if test="investTime != null">
+        investTime = #{investTime},
+      </if>
+      <if test="status != null">
+        status = #{status},
+      </if>
+      <if test="factAmount != null">
+        factAmount = #{factAmount},
+      </if>
+      <if test="interest != null">
+        interest = #{interest},
+      </if>
+      <if test="factInterest != null">
+        factInterest = #{factInterest},
+      </if>
+      <if test="specialRate != null">
+        specialRate = #{specialRate},
+      </if>
+      <if test="fid != null">
+        fid = #{fid},
+      </if>
+      <if test="experience != null && experience !=''">
+        experience = #{experience},
+      </if>
+      <if test="joinType != null">
+        joinType = #{joinType},
+      </if>
+      <if test="agreementNo != null && agreementNo !=''">
+        agreementNo = #{agreementNo},
+      </if>
+      <if test="message != null && message !=''">
+        message = #{message},
+      </if>
+      <if test="remitMchntTxnSsn != null && remitMchntTxnSsn !=''">
+        remitMchntTxnSsn = #{remitMchntTxnSsn},
+      </if>
+      <if test="contractNo != null && contractNo !=''">
+        contract_no = #{contractNo},
+      </if>
+      <if test="fuiouMessageNo != null && fuiouMessageNo !=''">
+        fuiouMessageNo = #{fuiouMessageNo},
+      </if>
+      <if test="fileStatus != null">
+        fileStatus = #{fileStatus},
+      </if>
+      <if test="failureCause != null && failureCause !=''">
+        failureCause = #{failureCause},
+      </if>
+      <if test="mchntTxnSsn != null && mchntTxnSsn !=''">
+        mchnt_txn_ssn = #{mchntTxnSsn},
+      </if>
+      <if test="rewarsType != null && rewarsType !=''">
+        rewarsType = #{rewarsType},
+      </if>
+      <if test="rewarsStatus != null">
+        rewarsStatus = #{rewarsStatus},
+      </if>
+      <if test="anxinContractNo != null && anxinContractNo !=''">
+        anxinContractNo = #{anxinContractNo},
+      </if>
+    </set>
+     where id = #{id}
+  </update>
+</mapper>
