@@ -1,0 +1,13 @@
+CREATE TABLE `sys_operation_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `eventName` varchar(100) DEFAULT NULL COMMENT '时间名称',
+  `reqStatus` tinyint(2) DEFAULT NULL COMMENT '请求状态: 1 成功,2失败',
+  `userName` varchar(255) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `type` tinyint(2) DEFAULT NULL COMMENT '操作类型: 1查看,2新增,3修改,4删除,5综合',
+  `status` tinyint(2) DEFAULT NULL COMMENT '操作结果 1:成功,2:失败',
+  `reqMessage` varchar(1000) DEFAULT NULL COMMENT '请求类容',
+  `resMessage` varchar(1000) DEFAULT NULL COMMENT '返回信息',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
