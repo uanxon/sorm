@@ -113,10 +113,10 @@ public class MapperUtils {
 				.append(" != null\">\r\n" );
 			}					
 			x.append( "        ").append(ti.getSorts().get(i)).append(",\r\n      </if>    \r\n" );
-			y.append( "          #{").append(ti.getSorts().get(i)).append("},\r\n      </if>    \r\n" );
+			y.append( "          #{").append(ti.getColumns().get(ti.getSorts().get(i)).getFieldName()).append("},\r\n      </if>    \r\n" );
 		}
 		s.append(x)
-		.append( "    </trim>\r\n    <trim prefix=\"values (\" suffix=\")\" suffixOverrides=\",\">     \r\n" )
+		.append( "    </trim>\r\n    <trim prefix=\"(\" suffix=\")\" suffixOverrides=\",\">     \r\n" )
 		.append(y).append("    </trim>\r\n  </insert>\r\n"); 
 		return s;
 	}

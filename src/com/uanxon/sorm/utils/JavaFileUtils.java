@@ -50,13 +50,13 @@ public class JavaFileUtils {
 			}
 			column.setFieldName(StringUtils.firstChar2UpperCase(colname));
 			//生成 属性 和注释
-			jfgs.setFieldInfo("\t//"+column.getRemarks()+"\n\tprivate "+javaFieldType+" "+colname+";\n");
+			jfgs.setFieldInfo("\t//"+column.getRemarks()+"\n\tprivate "+javaFieldType+" "+column.getFieldName()+";\n");
 			
 			//public String getUsername(){return username;}
 			//生成get方法的源代码
 			StringBuilder getSrc = new StringBuilder();
 			getSrc.append("\tpublic "+javaFieldType+" get"+StringUtils.firstCharUpperCase(column.getFieldName())+"(){\n");
-			getSrc.append("\t\treturn "+column.getName()+";\n");
+			getSrc.append("\t\treturn "+column.getFieldName()+";\n");
 			getSrc.append("\t}\n");
 			jfgs.setGetInfo(getSrc.toString());
 			
@@ -64,8 +64,8 @@ public class JavaFileUtils {
 			//生成set方法的源代码
 			StringBuilder setSrc = new StringBuilder();
 			setSrc.append("\tpublic void set"+StringUtils.firstCharUpperCase(column.getFieldName())+"(");
-			setSrc.append(javaFieldType+" "+column.getName()+"){\n");
-			setSrc.append("\t\tthis."+column.getName()+"="+column.getName()+";\n");
+			setSrc.append(javaFieldType+" "+column.getFieldName()+"){\n");
+			setSrc.append("\t\tthis."+column.getFieldName()+"="+column.getFieldName()+";\n");
 			setSrc.append("\t}\n");
 			jfgs.setSetInfo(setSrc.toString());
 			
