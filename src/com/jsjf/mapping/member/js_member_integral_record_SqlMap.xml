@@ -40,7 +40,7 @@
       <if test="endDate != null">
         endDate,
       </if>    
-      <if test="type != null && type != ''">
+      <if test="type != null and type != ''">
         type,
       </if>    
     </trim>
@@ -60,7 +60,7 @@
       <if test="endDate != null">
           #{endDate},
       </if>    
-      <if test="type != null && type != ''">
+      <if test="type != null and type != ''">
           #{type},
       </if>    
     </trim>
@@ -101,7 +101,7 @@
       <if test="endDate != null">
         endDate = #{endDate},
       </if>
-      <if test="type != null && type !=''">
+      <if test="type != null and type !=''">
         type = #{type},
       </if>
     </set>
