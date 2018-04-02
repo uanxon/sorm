@@ -98,12 +98,12 @@ public class MapperUtils {
 			if ("String".equals(ti.getConvertor().databaseType2JavaType(ti.getColumns().get(ti.getSorts().get(i)).getDataType()))) {
 				x.append("      <if test=\"")
 				.append(ti.getColumns().get(ti.getSorts().get(i)).getFieldName())
-				.append(" != null && ")
+				.append(" != null and ")
 				.append(ti.getColumns().get(ti.getSorts().get(i)).getFieldName())
 				.append(" != ''\">\r\n" );
 				y.append("      <if test=\"")
 				.append(ti.getColumns().get(ti.getSorts().get(i)).getFieldName())
-				.append(" != null && ")
+				.append(" != null and ")
 				.append(ti.getColumns().get(ti.getSorts().get(i)).getFieldName())
 				.append(" != ''\">\r\n" );
 			}else {
@@ -134,7 +134,7 @@ public class MapperUtils {
 				for(int i=1;i<ti.getSorts().size();i++) {
 					s.append("      <if test=\"").append(ti.getColumns().get(ti.getSorts().get(i)).getFieldName());
 					if ("String".equals(ti.getConvertor().databaseType2JavaType(ti.getColumns().get(ti.getSorts().get(i)).getDataType()))) {
-						s.append(" != null && ").append(ti.getColumns().get(ti.getSorts().get(i)).getFieldName()).append(" !=''\">\r\n");										
+						s.append(" != null and ").append(ti.getColumns().get(ti.getSorts().get(i)).getFieldName()).append(" !=''\">\r\n");										
 					}else {
 						s.append(" != null\">\r\n");
 					}
