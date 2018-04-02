@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jsjf.dao.member.JsMemberIntegralRecordDAO">
+  <resultMap id="BaseResultMap" type="com.jsjf.model.member.JsMemberIntegralRecord">
+	<result column="id" property="id" />
+	<result column="uid" property="uid" />
+	<result column="payType" property="payType" />
+	<result column="integral" property="integral" />
+	<result column="startDate" property="startDate" />
+	<result column="endDate" property="endDate" />
+	<result column="type" property="type" />
+  </resultMap>
+ <sql id="base_Sql">
+    id,uid,payType,integral,startDate,endDate,type
+ </sql>
+ <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from js_member_integral_record
+    where id = #{id}
+ </delete>
+ <insert id="insert" parameterType="com.jsjf.model.member.JsMemberIntegralRecord">
+    insert into js_member_integral_record (uid,payType,integral,startDate,endDate,type)
+    values (#{uid},#{payType},#{integral},#{startDate},#{endDate},#{type})
+ </insert>
+ <insert id="insertSelective" parameterType="com.jsjf.model.member.JsMemberIntegralRecord">
+    insert into js_member_integral_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        uid,
+      </if>    
+      <if test="payType != null">
+        payType,
+      </if>    
+      <if test="integral != null">
+        integral,
+      </if>    
+      <if test="startDate != null">
+        startDate,
+      </if>    
+      <if test="endDate != null">
+        endDate,
+      </if>    
+      <if test="type != null && type != ''">
+        type,
+      </if>    
+    </trim>
+    <trim prefix="(" suffix=")" suffixOverrides=",">     
+      <if test="uid != null">
+          #{uid},
+      </if>    
+      <if test="payType != null">
+          #{payType},
+      </if>    
+      <if test="integral != null">
+          #{integral},
+      </if>    
+      <if test="startDate != null">
+          #{startDate},
+      </if>    
+      <if test="endDate != null">
+          #{endDate},
+      </if>    
+      <if test="type != null && type != ''">
+          #{type},
+      </if>    
+    </trim>
+  </insert>
+ <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="base_Sql" />
+    from js_member_integral_record
+    where id = #{id}
+ </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsjf.model.member.JsMemberIntegralRecord">
+    update js_member_integral_record
+    <set>    
+        uid = #{uid},
+        payType = #{payType},
+        integral = #{integral},
+        startDate = #{startDate},
+        endDate = #{endDate},
+        type = #{type},
+    </set>
+     where id = #{id}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsjf.model.member.JsMemberIntegralRecord">
+    update js_member_integral_record
+    <set>    
+      <if test="uid != null">
+        uid = #{uid},
+      </if>
+      <if test="payType != null">
+        payType = #{payType},
+      </if>
+      <if test="integral != null">
+        integral = #{integral},
+      </if>
+      <if test="startDate != null">
+        startDate = #{startDate},
+      </if>
+      <if test="endDate != null">
+        endDate = #{endDate},
+      </if>
+      <if test="type != null && type !=''">
+        type = #{type},
+      </if>
+    </set>
+     where id = #{id}
+  </update>
+</mapper>

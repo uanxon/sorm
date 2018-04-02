@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jsjf.dao.member.JsMemberIntegralDAO">
+  <resultMap id="BaseResultMap" type="com.jsjf.model.member.JsMemberIntegral">
+	<result column="id" property="id" />
+	<result column="uid" property="uid" />
+	<result column="integral_balance" property="integralBalance" />
+	<result column="integral_use" property="integralUse" />
+	<result column="integral_overdue" property="integralOverdue" />
+	<result column="integral_count" property="integralCount" />
+	<result column="integral_soon" property="integralSoon" />
+  </resultMap>
+ <sql id="base_Sql">
+    id,uid,integral_balance,integral_use,integral_overdue,integral_count,integral_soon
+ </sql>
+ <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from js_member_integral
+    where id = #{id}
+ </delete>
+ <insert id="insert" parameterType="com.jsjf.model.member.JsMemberIntegral">
+    insert into js_member_integral (uid,integral_balance,integral_use,integral_overdue,integral_count,integral_soon)
+    values (#{uid},#{integralBalance},#{integralUse},#{integralOverdue},#{integralCount},#{integralSoon})
+ </insert>
+ <insert id="insertSelective" parameterType="com.jsjf.model.member.JsMemberIntegral">
+    insert into js_member_integral
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        uid,
+      </if>    
+      <if test="integralBalance != null">
+        integral_balance,
+      </if>    
+      <if test="integralUse != null">
+        integral_use,
+      </if>    
+      <if test="integralOverdue != null">
+        integral_overdue,
+      </if>    
+      <if test="integralCount != null">
+        integral_count,
+      </if>    
+      <if test="integralSoon != null">
+        integral_soon,
+      </if>    
+    </trim>
+    <trim prefix="(" suffix=")" suffixOverrides=",">     
+      <if test="uid != null">
+          #{uid},
+      </if>    
+      <if test="integralBalance != null">
+          #{integralBalance},
+      </if>    
+      <if test="integralUse != null">
+          #{integralUse},
+      </if>    
+      <if test="integralOverdue != null">
+          #{integralOverdue},
+      </if>    
+      <if test="integralCount != null">
+          #{integralCount},
+      </if>    
+      <if test="integralSoon != null">
+          #{integralSoon},
+      </if>    
+    </trim>
+  </insert>
+ <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="base_Sql" />
+    from js_member_integral
+    where id = #{id}
+ </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsjf.model.member.JsMemberIntegral">
+    update js_member_integral
+    <set>    
+        uid = #{uid},
+        integral_balance = #{integralBalance},
+        integral_use = #{integralUse},
+        integral_overdue = #{integralOverdue},
+        integral_count = #{integralCount},
+        integral_soon = #{integralSoon},
+    </set>
+     where id = #{id}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsjf.model.member.JsMemberIntegral">
+    update js_member_integral
+    <set>    
+      <if test="uid != null">
+        uid = #{uid},
+      </if>
+      <if test="integralBalance != null">
+        integral_balance = #{integralBalance},
+      </if>
+      <if test="integralUse != null">
+        integral_use = #{integralUse},
+      </if>
+      <if test="integralOverdue != null">
+        integral_overdue = #{integralOverdue},
+      </if>
+      <if test="integralCount != null">
+        integral_count = #{integralCount},
+      </if>
+      <if test="integralSoon != null">
+        integral_soon = #{integralSoon},
+      </if>
+    </set>
+     where id = #{id}
+  </update>
+</mapper>
