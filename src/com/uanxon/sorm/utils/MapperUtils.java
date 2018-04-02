@@ -157,7 +157,7 @@ public class MapperUtils {
 	 * @return
 	 */
 	public static StringBuffer createUpdate(TableInfo ti) {
-		StringBuffer s = new StringBuffer("  <update id=\"updateByPrimaryKeySelective\" parameterType=\"")
+		StringBuffer s = new StringBuffer("  <update id=\"updateByPrimaryKey\" parameterType=\"")
 				.append(ti.getDao().getBeanSrc()).append("\">\r\n    update ").append(ti.getTname())
 				.append("\r\n    <set>    \r\n");
 				for(int i=1;i<ti.getSorts().size();i++) {					
