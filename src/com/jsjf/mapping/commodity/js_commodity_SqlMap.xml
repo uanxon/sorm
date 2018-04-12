@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jsjf.dao.commodity.JsCommodityDAO">
+  <resultMap id="BaseResultMap" type="com.jsjf.model.commodity.JsCommodity">
+	<result column="id" property="id" />
+	<result column="commodit_group" property="commoditGroup" />
+	<result column="commodity_type" property="commodityType" />
+	<result column="coupon_type" property="couponType" />
+	<result column="commodity_name" property="commodityName" />
+	<result column="activityid" property="activityid" />
+	<result column="exchange_integral" property="exchangeIntegral" />
+	<result column="promotion" property="promotion" />
+	<result column="promotion_integral" property="promotionIntegral" />
+	<result column="inventory" property="inventory" />
+	<result column="sales" property="sales" />
+	<result column="sort" property="sort" />
+	<result column="channel" property="channel" />
+	<result column="purchasing" property="purchasing" />
+	<result column="purchasing_start_date" property="purchasingStartDate" />
+	<result column="purchasing_end_date" property="purchasingEndDate" />
+	<result column="purchasing_number" property="purchasingNumber" />
+	<result column="purchasing_type" property="purchasingType" />
+	<result column="purchasing_start_time" property="purchasingStartTime" />
+	<result column="purchasing_end_time" property="purchasingEndTime" />
+	<result column="mgid" property="mgid" />
+	<result column="payment_method" property="paymentMethod" />
+	<result column="recommended_commodity" property="recommendedCommodity" />
+	<result column="page_sort" property="pageSort" />
+	<result column="exchange_sort" property="exchangeSort" />
+	<result column="share_description" property="shareDescription" />
+	<result column="instructions" property="instructions" />
+	<result column="pc_url" property="pcUrl" />
+	<result column="h5_url" property="h5Url" />
+	<result column="status" property="status" />
+	<result column="addDate" property="addDate" />
+	<result column="addUser" property="addUser" />
+	<result column="updateDate" property="updateDate" />
+	<result column="updateUser" property="updateUser" />
+  </resultMap>
+ <sql id="base_Sql">
+    id,commodit_group,commodity_type,coupon_type,commodity_name,activityid,exchange_integral,promotion,promotion_integral,inventory,sales,sort,channel,purchasing,purchasing_start_date,purchasing_end_date,purchasing_number,purchasing_type,purchasing_start_time,purchasing_end_time,mgid,payment_method,recommended_commodity,page_sort,exchange_sort,share_description,instructions,pc_url,h5_url,status,addDate,addUser,updateDate,updateUser
+ </sql>
+ <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from js_commodity
+    where id = #{id}
+ </delete>
+ <insert id="insert" parameterType="com.jsjf.model.commodity.JsCommodity">
+    insert into js_commodity (commodit_group,commodity_type,coupon_type,commodity_name,activityid,exchange_integral,promotion,promotion_integral,inventory,sales,sort,channel,purchasing,purchasing_start_date,purchasing_end_date,purchasing_number,purchasing_type,purchasing_start_time,purchasing_end_time,mgid,payment_method,recommended_commodity,page_sort,exchange_sort,share_description,instructions,pc_url,h5_url,status,addDate,addUser,updateDate,updateUser)
+    values (#{commoditGroup},#{commodityType},#{couponType},#{commodityName},#{activityid},#{exchangeIntegral},#{promotion},#{promotionIntegral},#{inventory},#{sales},#{sort},#{channel},#{purchasing},#{purchasingStartDate},#{purchasingEndDate},#{purchasingNumber},#{purchasingType},#{purchasingStartTime},#{purchasingEndTime},#{mgid},#{paymentMethod},#{recommendedCommodity},#{pageSort},#{exchangeSort},#{shareDescription},#{instructions},#{pcUrl},#{h5Url},#{status},#{addDate},#{addUser},#{updateDate},#{updateUser})
+ </insert>
+ <insert id="insertSelective" parameterType="com.jsjf.model.commodity.JsCommodity">
+    insert into js_commodity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commoditGroup != null">
+        commodit_group,
+      </if>    
+      <if test="commodityType != null">
+        commodity_type,
+      </if>    
+      <if test="couponType != null">
+        coupon_type,
+      </if>    
+      <if test="commodityName != null and commodityName != ''">
+        commodity_name,
+      </if>    
+      <if test="activityid != null">
+        activityid,
+      </if>    
+      <if test="exchangeIntegral != null">
+        exchange_integral,
+      </if>    
+      <if test="promotion != null">
+        promotion,
+      </if>    
+      <if test="promotionIntegral != null">
+        promotion_integral,
+      </if>    
+      <if test="inventory != null">
+        inventory,
+      </if>    
+      <if test="sales != null">
+        sales,
+      </if>    
+      <if test="sort != null">
+        sort,
+      </if>    
+      <if test="channel != null">
+        channel,
+      </if>    
+      <if test="purchasing != null">
+        purchasing,
+      </if>    
+      <if test="purchasingStartDate != null">
+        purchasing_start_date,
+      </if>    
+      <if test="purchasingEndDate != null">
+        purchasing_end_date,
+      </if>    
+      <if test="purchasingNumber != null">
+        purchasing_number,
+      </if>    
+      <if test="purchasingType != null">
+        purchasing_type,
+      </if>    
+      <if test="purchasingStartTime != null and purchasingStartTime != ''">
+        purchasing_start_time,
+      </if>    
+      <if test="purchasingEndTime != null and purchasingEndTime != ''">
+        purchasing_end_time,
+      </if>    
+      <if test="mgid != null">
+        mgid,
+      </if>    
+      <if test="paymentMethod != null">
+        payment_method,
+      </if>    
+      <if test="recommendedCommodity != null">
+        recommended_commodity,
+      </if>    
+      <if test="pageSort != null">
+        page_sort,
+      </if>    
+      <if test="exchangeSort != null">
+        exchange_sort,
+      </if>    
+      <if test="shareDescription != null and shareDescription != ''">
+        share_description,
+      </if>    
+      <if test="instructions != null and instructions != ''">
+        instructions,
+      </if>    
+      <if test="pcUrl != null and pcUrl != ''">
+        pc_url,
+      </if>    
+      <if test="h5Url != null and h5Url != ''">
+        h5_url,
+      </if>    
+      <if test="status != null">
+        status,
+      </if>    
+      <if test="addDate != null">
+        addDate,
+      </if>    
+      <if test="addUser != null">
+        addUser,
+      </if>    
+      <if test="updateDate != null">
+        updateDate,
+      </if>    
+      <if test="updateUser != null">
+        updateUser,
+      </if>    
+    </trim>
+    <trim prefix="(" suffix=")" suffixOverrides=",">     
+      <if test="commoditGroup != null">
+          #{commoditGroup},
+      </if>    
+      <if test="commodityType != null">
+          #{commodityType},
+      </if>    
+      <if test="couponType != null">
+          #{couponType},
+      </if>    
+      <if test="commodityName != null and commodityName != ''">
+          #{commodityName},
+      </if>    
+      <if test="activityid != null">
+          #{activityid},
+      </if>    
+      <if test="exchangeIntegral != null">
+          #{exchangeIntegral},
+      </if>    
+      <if test="promotion != null">
+          #{promotion},
+      </if>    
+      <if test="promotionIntegral != null">
+          #{promotionIntegral},
+      </if>    
+      <if test="inventory != null">
+          #{inventory},
+      </if>    
+      <if test="sales != null">
+          #{sales},
+      </if>    
+      <if test="sort != null">
+          #{sort},
+      </if>    
+      <if test="channel != null">
+          #{channel},
+      </if>    
+      <if test="purchasing != null">
+          #{purchasing},
+      </if>    
+      <if test="purchasingStartDate != null">
+          #{purchasingStartDate},
+      </if>    
+      <if test="purchasingEndDate != null">
+          #{purchasingEndDate},
+      </if>    
+      <if test="purchasingNumber != null">
+          #{purchasingNumber},
+      </if>    
+      <if test="purchasingType != null">
+          #{purchasingType},
+      </if>    
+      <if test="purchasingStartTime != null and purchasingStartTime != ''">
+          #{purchasingStartTime},
+      </if>    
+      <if test="purchasingEndTime != null and purchasingEndTime != ''">
+          #{purchasingEndTime},
+      </if>    
+      <if test="mgid != null">
+          #{mgid},
+      </if>    
+      <if test="paymentMethod != null">
+          #{paymentMethod},
+      </if>    
+      <if test="recommendedCommodity != null">
+          #{recommendedCommodity},
+      </if>    
+      <if test="pageSort != null">
+          #{pageSort},
+      </if>    
+      <if test="exchangeSort != null">
+          #{exchangeSort},
+      </if>    
+      <if test="shareDescription != null and shareDescription != ''">
+          #{shareDescription},
+      </if>    
+      <if test="instructions != null and instructions != ''">
+          #{instructions},
+      </if>    
+      <if test="pcUrl != null and pcUrl != ''">
+          #{pcUrl},
+      </if>    
+      <if test="h5Url != null and h5Url != ''">
+          #{h5Url},
+      </if>    
+      <if test="status != null">
+          #{status},
+      </if>    
+      <if test="addDate != null">
+          #{addDate},
+      </if>    
+      <if test="addUser != null">
+          #{addUser},
+      </if>    
+      <if test="updateDate != null">
+          #{updateDate},
+      </if>    
+      <if test="updateUser != null">
+          #{updateUser},
+      </if>    
+    </trim>
+  </insert>
+ <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="base_Sql" />
+    from js_commodity
+    where id = #{id}
+ </select>
+  <update id="updateByPrimaryKey" parameterType="com.jsjf.model.commodity.JsCommodity">
+    update js_commodity
+    <set>    
+        commodit_group = #{commoditGroup},
+        commodity_type = #{commodityType},
+        coupon_type = #{couponType},
+        commodity_name = #{commodityName},
+        activityid = #{activityid},
+        exchange_integral = #{exchangeIntegral},
+        promotion = #{promotion},
+        promotion_integral = #{promotionIntegral},
+        inventory = #{inventory},
+        sales = #{sales},
+        sort = #{sort},
+        channel = #{channel},
+        purchasing = #{purchasing},
+        purchasing_start_date = #{purchasingStartDate},
+        purchasing_end_date = #{purchasingEndDate},
+        purchasing_number = #{purchasingNumber},
+        purchasing_type = #{purchasingType},
+        purchasing_start_time = #{purchasingStartTime},
+        purchasing_end_time = #{purchasingEndTime},
+        mgid = #{mgid},
+        payment_method = #{paymentMethod},
+        recommended_commodity = #{recommendedCommodity},
+        page_sort = #{pageSort},
+        exchange_sort = #{exchangeSort},
+        share_description = #{shareDescription},
+        instructions = #{instructions},
+        pc_url = #{pcUrl},
+        h5_url = #{h5Url},
+        status = #{status},
+        addDate = #{addDate},
+        addUser = #{addUser},
+        updateDate = #{updateDate},
+        updateUser = #{updateUser},
+    </set>
+     where id = #{id}
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jsjf.model.commodity.JsCommodity">
+    update js_commodity
+    <set>    
+      <if test="commoditGroup != null">
+        commodit_group = #{commoditGroup},
+      </if>
+      <if test="commodityType != null">
+        commodity_type = #{commodityType},
+      </if>
+      <if test="couponType != null">
+        coupon_type = #{couponType},
+      </if>
+      <if test="commodityName != null and commodityName !=''">
+        commodity_name = #{commodityName},
+      </if>
+      <if test="activityid != null">
+        activityid = #{activityid},
+      </if>
+      <if test="exchangeIntegral != null">
+        exchange_integral = #{exchangeIntegral},
+      </if>
+      <if test="promotion != null">
+        promotion = #{promotion},
+      </if>
+      <if test="promotionIntegral != null">
+        promotion_integral = #{promotionIntegral},
+      </if>
+      <if test="inventory != null">
+        inventory = #{inventory},
+      </if>
+      <if test="sales != null">
+        sales = #{sales},
+      </if>
+      <if test="sort != null">
+        sort = #{sort},
+      </if>
+      <if test="channel != null">
+        channel = #{channel},
+      </if>
+      <if test="purchasing != null">
+        purchasing = #{purchasing},
+      </if>
+      <if test="purchasingStartDate != null">
+        purchasing_start_date = #{purchasingStartDate},
+      </if>
+      <if test="purchasingEndDate != null">
+        purchasing_end_date = #{purchasingEndDate},
+      </if>
+      <if test="purchasingNumber != null">
+        purchasing_number = #{purchasingNumber},
+      </if>
+      <if test="purchasingType != null">
+        purchasing_type = #{purchasingType},
+      </if>
+      <if test="purchasingStartTime != null and purchasingStartTime !=''">
+        purchasing_start_time = #{purchasingStartTime},
+      </if>
+      <if test="purchasingEndTime != null and purchasingEndTime !=''">
+        purchasing_end_time = #{purchasingEndTime},
+      </if>
+      <if test="mgid != null">
+        mgid = #{mgid},
+      </if>
+      <if test="paymentMethod != null">
+        payment_method = #{paymentMethod},
+      </if>
+      <if test="recommendedCommodity != null">
+        recommended_commodity = #{recommendedCommodity},
+      </if>
+      <if test="pageSort != null">
+        page_sort = #{pageSort},
+      </if>
+      <if test="exchangeSort != null">
+        exchange_sort = #{exchangeSort},
+      </if>
+      <if test="shareDescription != null and shareDescription !=''">
+        share_description = #{shareDescription},
+      </if>
+      <if test="instructions != null and instructions !=''">
+        instructions = #{instructions},
+      </if>
+      <if test="pcUrl != null and pcUrl !=''">
+        pc_url = #{pcUrl},
+      </if>
+      <if test="h5Url != null and h5Url !=''">
+        h5_url = #{h5Url},
+      </if>
+      <if test="status != null">
+        status = #{status},
+      </if>
+      <if test="addDate != null">
+        addDate = #{addDate},
+      </if>
+      <if test="addUser != null">
+        addUser = #{addUser},
+      </if>
+      <if test="updateDate != null">
+        updateDate = #{updateDate},
+      </if>
+      <if test="updateUser != null">
+        updateUser = #{updateUser},
+      </if>
+    </set>
+     where id = #{id}
+  </update>
+</mapper>

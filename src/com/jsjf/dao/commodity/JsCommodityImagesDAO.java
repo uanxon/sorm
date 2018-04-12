@@ -1,8 +1,8 @@
-package com.jsjf.dao.member;
+package com.jsjf.dao.commodity;
 
-import com.jsjf.model.member.JsMemberIntegral;
+import com.jsjf.model.commodity.JsCommodityImages;
 
-public interface JsMemberIntegralDAO {
+public interface JsCommodityImagesDAO {
 	/**
 	 * delete
 	 * @param id
@@ -14,30 +14,30 @@ public interface JsMemberIntegralDAO {
 	 * @param record
 	 * @return
 	 */
-	public int insert(JsMemberIntegral obj);
+	public int insert(JsCommodityImages obj);
 	/**
 	 * insert 不为空的属性
 	 * @param record
 	 * @return
 	 */
-	public int insertSelective(JsMemberIntegral obj);
+	public int insertSelective(JsCommodityImages obj);
 	/**
 	 * 查询
 	 * @param id
 	 * @return
 	 */
-	public JsMemberIntegral selectByPrimaryKey(Integer id);
+	public JsCommodityImages selectByPrimaryKey(Integer id);
 	/**
 	 * 修改不为空的属性
 	 * @param record
 	 * @return
 	 */
-	public int updateByPrimaryKeySelective(JsMemberIntegral obj);
+	public int updateByPrimaryKeySelective(JsCommodityImages obj);
 	/**
 	 * 修改所有属性
 	 * @param record
 	 * @return
 	 */
-	public int updateByPrimaryKey(JsMemberIntegral record);
+	public int updateByPrimaryKey(JsCommodityImages record);
 	  
 }

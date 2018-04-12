@@ -116,7 +116,7 @@ public class MapperUtils {
 			y.append( "          #{").append(ti.getColumns().get(ti.getSorts().get(i)).getFieldName()).append("},\r\n      </if>    \r\n" );
 		}
 		s.append(x)
-		.append( "    </trim>\r\n    <trim prefix=\"(\" suffix=\")\" suffixOverrides=\",\">     \r\n" )
+		.append( "    </trim>\r\n values\r\n   <trim prefix=\"(\" suffix=\")\" suffixOverrides=\",\">     \r\n" )
 		.append(y).append("    </trim>\r\n  </insert>\r\n"); 
 		return s;
 	}
