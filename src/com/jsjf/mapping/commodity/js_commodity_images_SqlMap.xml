@@ -32,7 +32,8 @@
         status,
       </if>    
     </trim>
-    <trim prefix="(" suffix=")" suffixOverrides=",">     
+ values
+   <trim prefix="(" suffix=")" suffixOverrides=",">     
       <if test="commodityid != null">
           #{commodityid},
       </if>    

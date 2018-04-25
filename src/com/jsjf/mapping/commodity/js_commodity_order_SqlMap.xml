@@ -16,7 +16,7 @@
 	<result column="status" property="status" />
   </resultMap>
  <sql id="base_Sql">
-    id,no,commodityid,uid,mobile,receiving_phone,address,integral,number,addDate,status
+    id,no,commodityid,uid,mobile,receivingPhone,address,integral,number,addDate,status
  </sql>
  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from js_commodity_order
@@ -60,7 +60,8 @@
         status,
       </if>    
     </trim>
-    <trim prefix="(" suffix=")" suffixOverrides=",">     
+ values
+   <trim prefix="(" suffix=")" suffixOverrides=",">     
       <if test="no != null and no != ''">
           #{no},
       </if>    

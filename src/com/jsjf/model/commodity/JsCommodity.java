@@ -29,7 +29,7 @@ public class JsCommodity {
 	//商品排序
 	private Integer sort;
 	//平台类型
-	private Integer channel;
+	private String channel;
 	//是否限购（1-是 2-否）
 	private Integer purchasing;
 	//限购开始时间(年月日)
@@ -45,7 +45,7 @@ public class JsCommodity {
 	//限购时段(时分秒)
 	private String purchasingEndTime;
 	//会员等级
-	private Integer mgid;
+	private String mgid;
 	//支付方式(1-积分)
 	private Integer paymentMethod;
 	//推荐商品（字典表）
@@ -110,7 +110,7 @@ public class JsCommodity {
 	public Integer getSort(){
 		return sort;
 	}
-	public Integer getChannel(){
+	public String getChannel(){
 		return channel;
 	}
 	public Integer getPurchasing(){
@@ -134,7 +134,7 @@ public class JsCommodity {
 	public String getPurchasingEndTime(){
 		return purchasingEndTime;
 	}
-	public Integer getMgid(){
+	public String getMgid(){
 		return mgid;
 	}
 	public Integer getPaymentMethod(){
@@ -212,7 +212,7 @@ public class JsCommodity {
 	public void setSort(Integer sort){
 		this.sort=sort;
 	}
-	public void setChannel(Integer channel){
+	public void setChannel(String channel){
 		this.channel=channel;
 	}
 	public void setPurchasing(Integer purchasing){
@@ -236,7 +236,7 @@ public class JsCommodity {
 	public void setPurchasingEndTime(String purchasingEndTime){
 		this.purchasingEndTime=purchasingEndTime;
 	}
-	public void setMgid(Integer mgid){
+	public void setMgid(String mgid){
 		this.mgid=mgid;
 	}
 	public void setPaymentMethod(Integer paymentMethod){

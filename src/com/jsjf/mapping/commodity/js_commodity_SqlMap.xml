@@ -39,7 +39,7 @@
 	<result column="updateUser" property="updateUser" />
   </resultMap>
  <sql id="base_Sql">
-    id,commodit_group,commodity_type,coupon_type,commodity_name,activityid,exchange_integral,promotion,promotion_integral,inventory,sales,sort,channel,purchasing,purchasing_start_date,purchasing_end_date,purchasing_number,purchasing_type,purchasing_start_time,purchasing_end_time,mgid,payment_method,recommended_commodity,page_sort,exchange_sort,share_description,instructions,pc_url,h5_url,status,addDate,addUser,updateDate,updateUser
+    id,commoditGroup,commodityType,couponType,commodityName,activityid,exchangeIntegral,promotion,promotionIntegral,inventory,sales,sort,channel,purchasing,purchasingStartDate,purchasingEndDate,purchasingNumber,purchasingType,purchasingStartTime,purchasingEndTime,mgid,paymentMethod,recommendedCommodity,pageSort,exchangeSort,shareDescription,instructions,pcUrl,h5Url,status,addDate,addUser,updateDate,updateUser
  </sql>
  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from js_commodity
@@ -85,7 +85,7 @@
       <if test="sort != null">
         sort,
       </if>    
-      <if test="channel != null">
+      <if test="channel != null and channel != ''">
         channel,
       </if>    
       <if test="purchasing != null">
@@ -109,7 +109,7 @@
       <if test="purchasingEndTime != null and purchasingEndTime != ''">
         purchasing_end_time,
       </if>    
-      <if test="mgid != null">
+      <if test="mgid != null and mgid != ''">
         mgid,
       </if>    
       <if test="paymentMethod != null">
@@ -152,7 +152,8 @@
         updateUser,
       </if>    
     </trim>
-    <trim prefix="(" suffix=")" suffixOverrides=",">     
+ values
+   <trim prefix="(" suffix=")" suffixOverrides=",">     
       <if test="commoditGroup != null">
           #{commoditGroup},
       </if>    
@@ -186,7 +187,7 @@
       <if test="sort != null">
           #{sort},
       </if>    
-      <if test="channel != null">
+      <if test="channel != null and channel != ''">
           #{channel},
       </if>    
       <if test="purchasing != null">
@@ -210,7 +211,7 @@
       <if test="purchasingEndTime != null and purchasingEndTime != ''">
           #{purchasingEndTime},
       </if>    
-      <if test="mgid != null">
+      <if test="mgid != null and mgid != ''">
           #{mgid},
       </if>    
       <if test="paymentMethod != null">
@@ -335,7 +336,7 @@
       <if test="sort != null">
         sort = #{sort},
       </if>
-      <if test="channel != null">
+      <if test="channel != null and channel !=''">
         channel = #{channel},
       </if>
       <if test="purchasing != null">
@@ -359,7 +360,7 @@
       <if test="purchasingEndTime != null and purchasingEndTime !=''">
         purchasing_end_time = #{purchasingEndTime},
       </if>
-      <if test="mgid != null">
+      <if test="mgid != null and mgid !=''">
         mgid = #{mgid},
       </if>
       <if test="paymentMethod != null">

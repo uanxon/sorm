@@ -24,7 +24,7 @@ public class JsCommodityOrder {
 	private Integer number;
 	//下单时间
 	private Date addDate;
-	//1-已完成
+	//1-已完成(默认已完成)
 	private Integer status;
 
 
