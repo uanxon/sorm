@@ -34,7 +34,7 @@ public class MapperUtils {
 				}
 				s.append("  </resultMap>\r\n <sql id=\"base_Sql\">\r\n    ");
 				
-				s.append( StringUtils.firstChar2UpperCase(org.apache.commons.lang.StringUtils.join(ti.getSorts().toArray(), ","))).append( "\r\n </sql>\r\n"); 
+				s.append( org.apache.commons.lang.StringUtils.join(ti.getSorts().toArray(), ",")).append( "\r\n </sql>\r\n"); 
 		return s;
 	}
 	
